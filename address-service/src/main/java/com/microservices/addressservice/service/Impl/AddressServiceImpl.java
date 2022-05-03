@@ -34,7 +34,7 @@ public class AddressServiceImpl implements AddressService {
     public AddressResponse getById(Long id) {
         logger.info("Inside get By Id: " + id);
 
-        Address address = addressRepository.getById(id);
+        Address address = addressRepository.getOne(id);
         return new AddressResponse(address.getId(),
                                     address.getStreet(),
                                     address.getCity());

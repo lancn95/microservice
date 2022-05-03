@@ -9,6 +9,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class AddressResponse {
     private Long id;
-    private  String street;
+    private String street;
     private String city;
 }
