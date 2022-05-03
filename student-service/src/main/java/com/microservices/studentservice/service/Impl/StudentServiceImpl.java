@@ -7,6 +7,7 @@ import com.microservices.studentservice.request.CreateStudentRequest;
 import com.microservices.studentservice.response.AddressResponse;
 import com.microservices.studentservice.response.StudentResponse;
 import com.microservices.studentservice.service.StudentService;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
@@ -45,7 +46,9 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
+    @Cacheable(key = "#id", value = "Student")
     public StudentResponse getById(Long id) {
+        System.out.println("Start call student ...");
         Student student = studentRepository.getOne(id);
         StudentResponse studentResponse = new StudentResponse(student);
 //        studentResponse.setAddressResponse(getAddressById(student.getAddressId()));
